@@ -61,6 +61,21 @@ async function run() {
         res.send(result);
     })
 
+    app.put('/tasks/:id', async(req, res)=>{
+        const id = req.params.id;
+        const filter = {_id: new ObjectId(id)};
+        const options = {upsert: true};
+        const updatedTask = req.body;
+        console.log(updatedTask);
+        const updatedDoc ={
+            $set: updatedTask,
+        } 
+
+        const result = await taskCollection.updateOne(filter, updatedDoc, options);
+
+        res.send(result);
+    })
+
     
 
     // Send a ping to confirm a successful connection
