@@ -48,6 +48,19 @@ async function run() {
         res.send(result);
     })
 
+    app.post('/tasks', async(req, res)=>{
+        const task = req.body;
+        // console.log(newTask);
+
+        const newTask = {
+            ...task,
+            Deadline: new Date(task.Deadline),
+        }
+
+        const result = await taskCollection.insertOne(newTask);
+        res.send(result);
+    })
+
     
 
     // Send a ping to confirm a successful connection
