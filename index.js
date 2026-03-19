@@ -35,9 +35,9 @@ async function run() {
     const taskCollection = client.db('taskDB').collection('taskDB');
 
     app.get('/tasks', async(req, res)=>{
-        // const cursor = taskCollection.find();
-        // const result = await cursor.toArray();
-        const result = await taskCollection.find().toArray();
+        const cursor = taskCollection.find();
+        const result = await cursor.toArray();
+        // const result = await taskCollection.find().toArray();
         res.send(result);
     });
 
